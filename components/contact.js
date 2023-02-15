@@ -4,7 +4,7 @@ export default function Contact () {
   return (
     <div>
       <h3>Contact</h3>
-      <Social />
+      <Social iconSize="30px" />
       <address>cube@web.mail.address</address>
     </div>
   )
