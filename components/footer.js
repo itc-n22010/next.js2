@@ -1,3 +1,7 @@
+import Logo from 'components/logo'
+
 export default function Footer () {
-  return <footer>FOOTER</footer>
+  return (
+    <footer><Logo /></footer>
+  )
 }
