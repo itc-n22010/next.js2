@@ -1,8 +1,9 @@
 import Logo from 'components/logo'
+import styles from 'styles/footer.module.css'
 import Social from 'components/social'
 
 export default function Footer () {
   return (
-    <footer><Logo /><Social /></footer>
+    <footer className={styles.wrapper}><div className={styles.flexContainer}><Logo /><Social /></div></footer>
   )
 }
