@@ -10,7 +10,10 @@ import ConvertBody from 'components/convert-body'
 import PostCategories from 'components/post-categories'
 import Image from 'next/image'
 
-export default function Schedule ({
+// ローカルの代替アイキャッチ画像
+import { eyecatchLocal } from 'lib/constants'
+
+export default function Post ({
   title,
   publish,
   content,
@@ -55,18 +58,26 @@ export default function Schedule ({
     </Container>
   )
 }
-
-export async function getStaticProps () {
-  const slug = 'schedule'
+export async function getStaticPaths () {
+  return {
+    paths: ['/blog/schedule', '/blog/music', '/blog/micro'],
+    fallback: false
+  }
+}
+export async function getStaticProps (context) {
+  const slug = context.params.slug
 
   const post = await getPostBySlug(slug)
   const description = extractText(post.content)
+  const eyecatch = post.eyecatch ?? eyecatchLocal
+
   return {
     props: {
       title: post.title,
       publish: post.publishDate,
       content: post.content,
       eyecatch: post.eyecatch,
+      eyecatch,
       categories: post.categories,
       description
     }
