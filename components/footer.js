@@ -1,6 +1,6 @@
 import Logo from 'components/logo'
-import styles from 'styles/footer.module.css'
 import Social from 'components/social'
+import styles from 'styles/footer.module.css'
 
 export default function Footer () {
   return (

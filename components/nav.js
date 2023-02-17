@@ -1,17 +1,41 @@
+import { useState } from 'react'
 import Link from 'next/link'
 import styles from 'styles/nav.module.css'
 export default function Nav () {
+  const [navIsOpen, setNavIsOpen] = useState(false)
+  const toggleNav = () => {
+    setNavIsOpen((prev) => !prev)
+  }
+  const closeNav = () => {
+    setNavIsOpen(false)
+  }
   return (
-    <nav>
+    <nav className={navIsOpen ? styles.open : styles.close}>
+      {navIsOpen && (
+        <style jsx global>{`
+          @media (max-width: 767px) {
+            body {
+              overflow: hidden;
+              position: fixed;
+              width: 100%;
+            }
+          }
+        `}
+        </style>
+      )}
+      <button className={styles.btn} onClick={toggleNav}>
+        <span className={styles.bar} />
+        <span className='se-only'>MENU</span>
+      </button>
       <ul className={styles.list}>
         <li>
-          <Link href='/'>HOME</Link>
+          <Link href='/' onClick={closeNav}>HOME</Link>
         </li>
         <li>
-          <Link href='/about'>about</Link>
+          <Link href='/about' onClick={closeNav}>about</Link>
         </li>
         <li>
-          <Link href='/blog'>Blog</Link>
+          <Link href='/blog' onClick={closeNav}>Blog</Link>
         </li>
       </ul>
     </nav>
